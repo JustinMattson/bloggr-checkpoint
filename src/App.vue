@@ -18,7 +18,7 @@ export default {
       //NOTE if you want to do something everytime the user logs in, do so here
       // this.$store.dispatch("setBearer", this.$auth.bearer);
       this.$store.dispatch("getProfile");
-      // this.$store.dispatch("getAllBlogs");
+      this.$store.dispatch("getAllBlogs");
     }
   },
   components: {

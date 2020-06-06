@@ -29,9 +29,10 @@ You will need to fulfill the following user stories:
 
 - "As a user, I can see all the blogs on the `home page`, so that I do not have to log in to see all the blogs"
 - "As a user, I can click on a blog to be taken to the `blog page`, so that I can read the contents of the blog and its comments"
-- "As a user, I can login to see my `profile page`, so that I can see all of my blogs"
-- "As a user, I can create, edit and delete blogs, so that I can easily create content to share with others"
-- "As a user, I can create, edit and delete comments on the `blog page`, so that I can provide feedback to other writers on their blog"
+
+* "As a user, I can login to see my `profile page`, so that I can see all of my blogs"
+* "As a user, I can create, edit and delete blogs, so that I can easily create content to share with others"
+* "As a user, I can create, edit and delete comments on the `blog page`, so that I can provide feedback to other writers on their blog"
 
 These user stories can be implemented as a stretch goals
 
@@ -48,11 +49,11 @@ Once you have the appropriate functionality, add a theme the site in whatever wa
 
 #### Visualization
 
-- [ ] `Home page` displays all published blogs (response from a standard get request)
-- [ ] Blogs on the `home page` are listed as title and author
-- [ ] Clicking the link users are taken to a `blog page`
-- [ ] Refreshing while on the `blog page` does not renavigate the user, and the blog still shows its contents
-- [ ] The `blog page` shows all comments for that blog
+- [+] `Home page` displays all published blogs (response from a standard get request)
+- [+] Blogs on the `home page` are listed as title and author
+- [+] Clicking the link users are taken to a `blog page`
+- [+] Refreshing while on the `blog page` does not renavigate the user, and the blog still shows its contents
+- [+] The `blog page` shows all comments for that blog
 
 #### Functionality
 
