@@ -4,13 +4,7 @@
       Welcome
       <span v-if="$auth.isAuthenticated">{{profile.name}}</span>
     </h1>
-    <nav class="nav nav-tabs nav-stacked">
-      <a class="nav-link" :class="{active: activeTab=='blogs'}" @click="activeTab = 'blogs'">Blogs</a>
-      <a class="nav-link" :class="{active: activeTab=='add'}" @click="activeTab = 'add'">Add</a>
-    </nav>
-    <blogs v-if="activeTab == 'blogs'" />
-    <add v-else-if="activeTab == 'add'" />
-
+    <i class="fas fa-plus action">&nbsp;Add Blog</i>
     <blog v-for="blog in blogs" :key="blog.id" :blog="blog" />
   </div>
 </template>
@@ -40,11 +34,7 @@ export default {
       return this.$store.state.profile;
     }
   },
-  methods: {
-    createBlog() {
-      this.$store.dispatch("newBlog", this.newBlog);
-    }
-  },
+  methods: {},
   components: {
     Blog,
     Profile

@@ -1,5 +1,5 @@
 <template>
-  <div class="BlogComments">
+  <div class="Blogs">
     Individual Blog Details Go Here
     <!-- NOTE Router link takes the name of the route, and an object including any parameters to pass -->
     <!-- <router-link :to="{ name: 'BlogComments', params: { id: blog.id }}"> -->
@@ -32,13 +32,15 @@
       </div>
     </div>
     <!-- </router-link> -->
+    Comments upon said post go here
+    <br />Insert Form to enter your own comment
   </div>
 </template>
 
 
 <script>
 export default {
-  name: "BlogComments",
+  name: "Blogs",
   mounted() {
     this.$store.dispatch("getBlogComments", this.$route.params.id);
   },

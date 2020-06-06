@@ -1,5 +1,5 @@
 <template>
-  <div class="blogs-component container">
+  <div class="addBlog container">
     <div class="row">
       <div class="col">
         <button
@@ -63,34 +63,21 @@
 </template>
 
 <script>
-import Blog from "./BlogComponent.vue";
-
 export default {
   name: "Blogs",
   // NOTE mounted fires at the first startup of the template being added to the page
-  mounted() {
-    this.$store.dispatch("getAllBlogs");
-  },
+  mounted() {},
   data() {
-    return {
-      newBlog: {},
-      blogForm: false
-    };
+    return {};
   },
-  computed: {
-    blogs() {
-      return this.$store.state.blogs;
-    }
-  },
+  computed: {},
   methods: {
     createBlog() {
       this.$store.dispatch("createBlog", { ...this.newBlog });
       this.newBlog = {};
     }
   },
-  components: {
-    Blog
-  }
+  components: {}
 };
 </script>
 
