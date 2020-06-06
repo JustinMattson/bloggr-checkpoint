@@ -1,6 +1,5 @@
 <template>
   <div class="blog">
-    <!-- NOTE Router link takes the name of the route, and an object including any parameters to pass -->
     <div class="card my-2 mx-0">
       <div class="card text-left">
         <div class="card-body">
@@ -23,6 +22,9 @@
 export default {
   name: "Blog",
   props: ["blog"],
+  mounted() {
+    this.$store.dispatch("getAllBlogs", this.$route.params.id);
+  },
   data() {
     return {
       color: "#808",

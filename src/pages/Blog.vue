@@ -16,8 +16,6 @@
     <!-- </router-link> -->
     <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
 
-    <div>comments: {{blog.comments}}</div>
-
     <form
       class="form"
       v-if="$auth.isAuthenticated"
@@ -43,7 +41,7 @@
 
 
 <script>
-import Comment from "../components/CommentsComponent.vue";
+import Comment from "@/components/CommentsComponent.vue";
 export default {
   name: "Blogs",
   mounted() {
@@ -62,8 +60,7 @@ export default {
   data() {
     return {
       newComment: {
-        blogId: this.$route.params.id,
-        body: ""
+        blogId: this.$route.params.id
       }
     };
   },
@@ -71,8 +68,8 @@ export default {
     comments() {
       return this.$store.state.activeBlog.comments;
     },
-    comments() {
-      return this.$store.state.activeBlog.comments;
+    blog() {
+      return this.$store.state.activeBlog.blog;
     }
   },
   methods: {
