@@ -1,10 +1,26 @@
 <template>
-  <div class="home">
+  <div class="home container">
     <h1>
       Welcome
-      <span v-if="$auth.isAuthenticated">{{profile.name}}</span>
+      <span v-if="$auth.isAuthenticated" :style="{color:color}">{{profile.name}}</span>
     </h1>
-    <i class="fas fa-plus action">&nbsp;Add Blog</i>
+
+    <i class="fas fa-plus action" @click="toggleForm" :style="{color:color}">&nbsp;Add Blog</i>
+    <form class="form" v-if="showForm" @submit.prevent="newBlog" style="width:100%;">
+      <div class="form-group">
+        <label for></label>
+        <input type="text" name="title" id class="form-control" placeholder="Title..." />
+        <input
+          type="text"
+          name="body"
+          id
+          class="form-control"
+          placeholder="Blog..."
+          style="height:15em;"
+        />
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+      </div>
+    </form>
     <blog v-for="blog in blogs" :key="blog.id" :blog="blog" />
   </div>
 </template>
@@ -23,7 +39,9 @@ export default {
         title: "",
         creatorEmail: "",
         createdAt: ""
-      }
+      },
+      showForm: false,
+      color: "#808"
     };
   },
   computed: {
@@ -34,7 +52,14 @@ export default {
       return this.$store.state.profile;
     }
   },
-  methods: {},
+  methods: {
+    toggleForm() {
+      this.showForm = !this.showForm;
+    },
+    newBlog() {
+      this.$store.dispatch("newBlog", this.newBlog);
+    }
+  },
   components: {
     Blog,
     Profile
