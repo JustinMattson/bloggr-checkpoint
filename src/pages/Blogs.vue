@@ -1,5 +1,5 @@
 <template>
-  <div class="Blogs">
+  <div class="Blogs container">
     Individual Blog Details Go Here
     <!-- NOTE Router link takes the name of the route, and an object including any parameters to pass -->
     <!-- <router-link :to="{ name: 'BlogComments', params: { id: blog.id }}"> -->
@@ -33,7 +33,28 @@
     </div>
     <!-- </router-link> -->
     Comments upon said post go here
+    <div>comments: {{blog.comments}}</div>
+
     <br />Insert Form to enter your own comment
+    <form
+      class="form"
+      v-if="$auth.isAuthenticated"
+      @submit.prevent="newComment"
+      style="width:100%;"
+    >
+      <div class="form-group">
+        <label for></label>
+        <input
+          type="text"
+          name="comment"
+          v-model="newComment.comment"
+          id
+          class="form-control"
+          placeholder="Comment..."
+        />
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -55,11 +76,19 @@ export default {
     next();
   },
   data() {
-    return {};
+    return {
+      newComment: {}
+    };
   },
   computed: {
     blog() {
       return this.$store.state.activeBlog;
+    }
+  },
+  methods: {
+    newComment() {
+      this.$store.dispatch("newComment", { ...this.newComment });
+      this.newComment = {};
     }
   },
   components: {}

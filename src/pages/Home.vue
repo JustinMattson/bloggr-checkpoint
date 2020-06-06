@@ -5,14 +5,22 @@
       <span v-if="$auth.isAuthenticated" :style="{color:color}">{{profile.name}}</span>
     </h1>
 
-    <i class="fas fa-plus action" @click="toggleForm" :style="{color:color}">&nbsp;Add Blog</i>
+    <i class="fas fa-plus action" @click="toggleForm" :style="{color:color}">&nbsp;New Blog</i>
     <form class="form" v-if="showForm" @submit.prevent="newBlog" style="width:100%;">
       <div class="form-group">
         <label for></label>
-        <input type="text" name="title" id class="form-control" placeholder="Title..." />
+        <input
+          type="text"
+          name="title"
+          v-model="title"
+          id
+          class="form-control"
+          placeholder="Title..."
+        />
         <input
           type="text"
           name="body"
+          v-model="body"
           id
           class="form-control"
           placeholder="Blog..."
@@ -35,11 +43,7 @@ export default {
   },
   data() {
     return {
-      newBlog: {
-        title: "",
-        creatorEmail: "",
-        createdAt: ""
-      },
+      newBlog: {},
       showForm: false,
       color: "#808"
     };
@@ -57,7 +61,8 @@ export default {
       this.showForm = !this.showForm;
     },
     newBlog() {
-      this.$store.dispatch("newBlog", this.newBlog);
+      this.$store.dispatch("newBlog", { ...this.newBlog });
+      this.newBlog = {};
     }
   },
   components: {

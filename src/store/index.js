@@ -18,7 +18,7 @@ export default new Vuex.Store({
     setBlogs(state, data) {
       state.blogs = data;
     },
-    addBlog(state, data) {
+    newBlog(state, data) {
       state.blogs.push(data);
     },
     setActiveBlog(state, blog) {
