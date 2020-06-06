@@ -5,7 +5,7 @@ import Home from "../pages/Home.vue";
 // @ts-ignore
 import Profile from "../pages/Profile.vue";
 // @ts-ignore
-import Blogs from "../pages/Blogs.vue";
+import Blog from "../pages/Blog.vue";
 import { authGuard } from "@bcwdev/auth0-vue";
 
 Vue.use(VueRouter);
@@ -17,9 +17,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/blogs",
-    name: "Blogs",
-    component: Blogs,
+    path: "/blog/:id",
+    name: "Blog",
+    component: Blog,
   },
   {
     path: "/profile",

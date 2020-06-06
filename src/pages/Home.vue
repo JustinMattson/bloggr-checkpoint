@@ -12,7 +12,7 @@
         <input
           type="text"
           name="title"
-          v-model="title"
+          v-model="newBlog.title"
           id
           class="form-control"
           placeholder="Title..."
@@ -20,7 +20,7 @@
         <input
           type="text"
           name="body"
-          v-model="body"
+          v-model="newBlog.body"
           id
           class="form-control"
           placeholder="Blog..."
@@ -29,6 +29,7 @@
         <button type="submit" class="btn btn-outline-primary">Submit</button>
       </div>
     </form>
+    <!--  -->
     <blog v-for="blog in blogs" :key="blog.id" :blog="blog" />
   </div>
 </template>
@@ -45,7 +46,8 @@ export default {
     return {
       newBlog: {},
       showForm: false,
-      color: "#808"
+      color: "#808",
+      fontSize: "10px"
     };
   },
   computed: {
