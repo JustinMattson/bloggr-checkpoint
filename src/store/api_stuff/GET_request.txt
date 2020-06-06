@@ -1,0 +1,66 @@
+GET /blogs
+
+[
+    {
+        "tags": [],
+        "published": true,
+        "_id": "5ed7c4a742ff540017094cc8",
+        "title": "neat",
+        "body": "whatevs",
+        "creatorEmail": "darrylkilzer@gmail.com",
+        "createdAt": "2020-06-03T15:41:27.418Z",
+        "updatedAt": "2020-06-03T15:41:27.418Z",
+        "__v": 0,
+        "creator": null,
+        "id": "5ed7c4a742ff540017094cc8"
+    },
+    {
+        "tags": [],
+        "published": true,
+        "_id": "5ed7c4b442ff540017094cc9",
+        "title": "neat",
+        "body": "whatevs",
+        "creatorEmail": "darrylkilzer@gmail.com",
+        "createdAt": "2020-06-03T15:41:40.493Z",
+        "updatedAt": "2020-06-03T15:41:40.493Z",
+        "__v": 0,
+        "creator": null,
+        "id": "5ed7c4b442ff540017094cc9"
+    },
+    {
+        "tags": [],
+        "published": true,
+        "_id": "5eda8c7707d28f0017c7398f",
+        "title": "test",
+        "body": "test",
+        "creatorEmail": "xanpanda@gmail.com",
+        "createdAt": "2020-06-05T18:18:31.826Z",
+        "updatedAt": "2020-06-05T18:18:31.826Z",
+        "__v": 0,
+        "creator": {
+            "_id": "5eda7f3907d28f0017c73988",
+            "name": "xanpanda@gmail.com",
+            "picture": "https://avatars1.githubusercontent.com/u/63717872?v=4",
+            "email": "xanpanda@gmail.com",
+            "id": "5eda7f3907d28f0017c73988"
+        },
+        "id": "5eda8c7707d28f0017c7398f"
+    }
+]
+
+
+GET /profile
+
+{
+    "subs": [
+        "auth0|5eda8c5e152e860019a1820d"
+    ],
+    "_id": "5eda8c7107d28f0017c7398e",
+    "name": "me@me.com",
+    "picture": "https://s.gravatar.com/avatar/f620f4647fb816073c9152a284245e64?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fme.png",
+    "email": "me@me.com",
+    "createdAt": "2020-06-05T18:18:25.758Z",
+    "updatedAt": "2020-06-05T18:18:25.758Z",
+    "__v": 0,
+    "id": "5eda8c7107d28f0017c7398e"
+}

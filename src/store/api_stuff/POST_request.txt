@@ -1,0 +1,33 @@
+POST /blogs
+
+{
+    "errors": {
+        "body": {
+            "message": "Path `body` is required.",
+            "name": "ValidatorError",
+            "properties": {
+                "message": "Path `body` is required.",
+                "type": "required",
+                "path": "body"
+            },
+            "kind": "required",
+            "path": "body"
+        },
+        "title": {
+            "message": "Path `title` is required.",
+            "name": "ValidatorError",
+            "properties": {
+                "message": "Path `title` is required.",
+                "type": "required",
+                "path": "title"
+            },
+            "kind": "required",
+            "path": "title"
+        }
+    },
+    "_message": "Blog validation failed",
+    "message": "Blog validation failed: body: Path `body` is required., title: Path `title` is required.",
+    "name": "ValidationError",
+    "status": 400,
+    "url": "/api/blogs"
+}

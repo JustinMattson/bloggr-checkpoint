@@ -1,0 +1,22 @@
+PUT /profile
+
+{
+    "errors": {
+        "name": {
+            "message": "Path `name` is required.",
+            "name": "ValidatorError",
+            "properties": {
+                "message": "Path `name` is required.",
+                "type": "required",
+                "path": "name"
+            },
+            "kind": "required",
+            "path": "name"
+        }
+    },
+    "_message": "Validation failed",
+    "message": "Validation failed: name: Path `name` is required.",
+    "name": "ValidationError",
+    "status": 400,
+    "url": "/api/profile"
+}

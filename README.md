@@ -56,11 +56,10 @@ Once you have the appropriate functionality, add a theme the site in whatever wa
 
 #### Functionality
 
-- [ ] Users Can Register, Login, and Logout (this should work out of the box, don't break it)
+- [+] Users Can Register, Login, and Logout (this should work out of the box, don't break it)
 - [ ] Once logged in Users can Create Edit and Delete Blogs
 - [ ] Once logged in Users can Create Edit and Delete Comments
 - [ ] Users can only modify/delete data they created
-
 
 ### API Routes
 
@@ -75,10 +74,12 @@ Schema:
     picture: { type: String }
 ```
 
+/profile
+
 - GET: '/' returns users profile, creates one if it does not exist\*
-- GET: '/blogs' returns logged in users Blogs\*\*
-- GET: '/comments' returns logged in users Comments\*\*
-- PUT: '/' Allows user to edit their own profile\*\*
+- GET: '/blogs' returns logged in users Blogs\*2
+- GET: '/comments' returns logged in users Comments\*2
+- PUT: '/' Allows user to edit their own profile\*2
 
 #### Blog _"api/blogs"_
 
@@ -91,11 +92,13 @@ Schema:
   creatorEmail: { type: String, required: true }
 ```
 
-- GET: '/' Returns all pubished blogs \*\*\*
+/blogs
+
+- GET: '/' Returns all pubished blogs \*3
 - GET: '/:id' Returns blog by Id and its comments
 - POST: '/' Create new Blog \*
-- PUT: '/:id' Edits Blog \*\*
-- DELETE: '/:id' Deletes Blog \*\*
+- PUT: '/:id' Edits Blog \*2
+- DELETE: '/:id' Deletes Blog \*2
 
 #### Comments _"api/comments"_
 
@@ -105,12 +108,14 @@ Schema:
   creatorEmail: { type: String, required: true }
 ```
 
+/comments
+
 - POST: '/' Create new Comment \*
-- PUT: '/:id' Edits Comment \*\*
-- DELETE: '/:id' Deletes Comment \*\*
+- PUT: '/:id' Edits Comment \*2
+- DELETE: '/:id' Deletes Comment \*2
 
 > \* _requires user login_ \
-> \*\* _requires login and ownership of data_ \
-> \*\*\* _accepts query parameter "creatorEmail" and filters for that creator_
+> \*2 _requires login and ownership of data_ \
+> \*3 _accepts query parameter "creatorEmail" and filters for that creator_
 
 deployed to: https://cw-bloggr.herokuapp.com/
