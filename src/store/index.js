@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     profile: {},
     blogs: [],
+    profileComments: [],
     activeBlog: {},
   },
   mutations: {
@@ -25,9 +26,9 @@ export default new Vuex.Store({
       state.activeBlog = blog;
     },
     // TODO Learn more about mutations?
-    // setUserComments(state, data) {
-    //   state.userComments = data
-    // }
+    setProfileComments(state, data) {
+      state.profileComments = data;
+    },
   },
   actions: {
     setBearer({}, bearer) {
@@ -45,13 +46,14 @@ export default new Vuex.Store({
       }
     },
     //TODO  not yet working
-    // async getProfileComments({ commit }) {
-    //   try {
-    //     let res = await api.get("profile/comments");
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
+    async getProfileComments({ commit }) {
+      try {
+        let res = await api.get("profile/comments");
+        commit("setProfileComments", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     // TODO Postman isn't updating my profile
     // {
     //   "name": JM,

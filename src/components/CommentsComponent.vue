@@ -7,7 +7,11 @@
             class="d-flex justify-content-between px-2"
             v-show="comment.creatorEmail==profile.email"
           >
-            <span class="action" v-show="comment.creatorEmail==profile.email">{{comment.blogId}}</span>
+            <span
+              class="action"
+              v-show="comment.creatorEmail==profile.email"
+              @click="goToBlog"
+            >{{comment.blogId}}</span>
             <span>
               <i
                 class="far fa-trash-alt text-danger action"
@@ -57,6 +61,9 @@ export default {
     deleteBlog() {
       // TODO add delete functionality
       console.log("delete me");
+    },
+    goToBlog() {
+      router.push({ name: "Blog", params: this.blogId });
     }
   },
   components: {
