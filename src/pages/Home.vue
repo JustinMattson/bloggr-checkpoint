@@ -26,7 +26,7 @@
           placeholder="Blog..."
           style="height:15em;"
         />
-        <button type="submit" class="btn btn-outline-primary">Submit</button>
+        <button type="submit" class="btn btn-outline-primary my-2">Submit</button>
       </div>
     </form>
     <!--  -->

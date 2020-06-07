@@ -1,7 +1,7 @@
 <template>
   <div class="Blogs container">
     <!-- NOTE this is for an individual Blog. -->
-    <div class="card mt-3">
+    <div class="card mt-3 mb-2 bg-info shadow">
       <div class="card text-left">
         <div class="card-body">
           <p class="card-title font-weight-bold">
@@ -29,11 +29,11 @@
           name="body"
           v-model="newComment.body"
           id
-          class="form-control"
-          placeholder="Comment..."
+          class="form-control m-1 border-dark shadow"
+          placeholder="Add Comment..."
           required
-        />
-        <button type="submit" class="btn btn-outline-primary">Submit</button>
+        />&nbsp;
+        <button type="submit" class="btn btn-outline-primary shadow ml-1">Submit</button>
       </div>
     </form>
   </div>
