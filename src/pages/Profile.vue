@@ -42,13 +42,13 @@
       <div class="col-6">
         <button type="button" class="btn btn-secondary shadow">View My Comments</button>
       </div>
-      <!-- TODO insert BlogComponents => createdEmail == profile.createdEmail -->
       <blog
         v-for="blog in blogs"
         :key="blog.id"
         :blog="blog"
         v-show="blog.creatorEmail==profile.email"
       />
+      <!-- TODO this is more difficult than this because there is no activeBlog, have to search all blogs for creatorEmail? -->
       <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
 
       <!-- TODO insert CommentComponents => createdEmail == profile.createdEmail -->
@@ -62,6 +62,9 @@ import Blog from "@/components/BlogsComponent.vue";
 import Comment from "@/components/CommentsComponent.vue";
 export default {
   name: "Profile",
+  mounted() {
+    this.$store.dispatch("getBlogComments", this.$route.params.id);
+  },
   data() {
     return {
       newProfile: {

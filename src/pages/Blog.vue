@@ -47,16 +47,6 @@ export default {
   mounted() {
     this.$store.dispatch("getBlogComments", this.$route.params.id);
   },
-  methods: {
-    deleteBlog() {
-      this.$store.dispatch("deleteBlog", this.blog._id);
-    }
-  },
-  // NOTE take some action before navigation changes
-  beforeRouteLeave(to, from, next) {
-    this.$store.commit("setActiveBlog", {});
-    next();
-  },
   data() {
     return {
       newComment: {
@@ -68,10 +58,22 @@ export default {
     comments() {
       return this.$store.state.activeBlog.comments;
     },
+    // TODO why is this blog and not blogs like the home vue?
     blog() {
       return this.$store.state.activeBlog.blog;
     }
   },
+  methods: {
+    deleteBlog() {
+      this.$store.dispatch("deleteBlog", this.blog._id);
+    }
+  },
+  // NOTE take some action before navigation changes
+  beforeRouteLeave(to, from, next) {
+    this.$store.commit("setActiveBlog", {});
+    next();
+  },
+
   methods: {
     newComment() {
       this.$store.dispatch("newComment", { ...this.newComment });
