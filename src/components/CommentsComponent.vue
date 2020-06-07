@@ -7,16 +7,14 @@
             class="d-flex justify-content-between px-2"
             v-show="comment.creatorEmail==profile.email"
           >
-            <span
-              class="action"
-              v-show="comment.creatorEmail==profile.email"
-              @click="goToBlog"
-            >{{comment.blogId}}</span>
-            <span>
+            <span class="action" v-show="comment.creatorEmail==profile.email" @click="goToBlog">
+              <router-link :to="{ name: 'Blog', params: { id: comment.blogId}}">{{comment.blogId}}</router-link>
+            </span>
+            <span v-show="comment.creatorEmail==profile.email">
+              <i class="fas fa-pencil-alt action" @click="toggleEdit"></i>&nbsp;
               <i
                 class="far fa-trash-alt text-danger action"
-                @click="deleteBlog"
-                v-show="comment.creatorEmail==profile.email"
+                @click="deleteComment(comment.id)"
               ></i>
             </span>
           </div>
@@ -29,6 +27,23 @@
             </div>
           </div>
         </div>
+        <!-- Update Comments Form -->
+        <div v-show="editComment++">testing</div>
+        <!-- <div class="row">
+          <div class="col-11 offset-1">
+            <form v-show="editComment" style="width:100%;" @submit.prevent="updateComment">
+              <input
+                class="mr-3"
+                type="text"
+                name="body"
+                v-model="updateComment.body"
+                placeholder="Update Comment..."
+                required
+              />
+              <button type="Submit" class="btn btn-outline-danger shadow ml-1)">Submit</button>
+            </form>
+          </div>
+        </div>-->
       </div>
     </div>
   </div>
@@ -46,7 +61,13 @@ export default {
     this.$store.dispatch("getActiveBlog");
   },
   data() {
-    return {};
+    return {
+      editComment: 0,
+      commentUpdate: {
+        body: "",
+        commentId: ""
+      }
+    };
   },
   computed: {
     profile() {
@@ -58,12 +79,31 @@ export default {
     isVerified() {
       blog.creatorEmail === profile.email ? author++ : author;
     },
+    toggleEdit() {
+      console.log(editComment);
+      this.editComment = !this.editComment;
+    },
     deleteBlog() {
       // TODO add delete functionality
       console.log("delete me");
     },
-    goToBlog() {
-      router.push({ name: "Blog", params: this.blogId });
+    // goToBlog() {
+    //   //console.log({ name: "Blog", params: this.comment.blogId });
+    //   this.$store.dispatch("goTo", {
+    //     name: "Blog",
+    //     params: this.comment.blogId
+    //   });
+    // },
+    updateComment(id, commentUpdate) {
+      console.log(id, commentUpdate);
+      this.$store.dispatch("updateComment", { id, commentUpdate });
+    },
+    deleteComment(id) {
+      // TODO add refresh functionality
+      debugger;
+      console.log("delete me");
+      this.$store.dispatch("deleteComment", id);
+      this.$store.dispatch("getActiveBlog");
     }
   },
   components: {

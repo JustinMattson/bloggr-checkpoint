@@ -19,7 +19,7 @@
     <form
       class="form"
       v-if="$auth.isAuthenticated"
-      @submit.prevent="newComment"
+      @submit.prevent="addComment"
       style="width:100%;"
     >
       <div class="form-group">
@@ -66,19 +66,17 @@ export default {
   methods: {
     deleteBlog() {
       this.$store.dispatch("deleteBlog", this.blog._id);
-    }
-  },
-  // NOTE take some action before navigation changes
-  beforeRouteLeave(to, from, next) {
-    this.$store.commit("setActiveBlog", {});
-    next();
-  },
-
-  methods: {
-    newComment() {
-      this.$store.dispatch("newComment", { ...this.newComment });
-      this.newComment = {};
-      //careful about removing the blogid
+    },
+    // NOTE take some action before navigation changes
+    // beforeRouteLeave(to, from, next) {
+    //   this.$store.commit("setActiveBlog", {});
+    //   next();
+    // },
+    addComment() {
+      this.$store.dispatch("addComment", { ...this.newComment });
+      // TODO troubleshoot why this isn't refreshing the screen.
+      this.$store.dispatch("getBlogComments", this.$route.params.id);
+      this.newComment = { blogId: this.$route.params.id };
     }
   },
   components: {

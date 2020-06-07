@@ -12,7 +12,7 @@
     </p>
     <p class="text-muted">Click on profile image to edit user profile.</p>
 
-    <form class="form" v-if="edit" style="width:100%;">
+    <form class="form" v-if="edit" style="width:100%;" @submit.prevent="updateProfile">
       <div class="form-group">
         <label for></label>
         <input
@@ -22,6 +22,7 @@
           id
           class="form-control m-1 shadow border-warning"
           placeholder="Name..."
+          required
         />
         <input
           type="text"
@@ -72,6 +73,7 @@ import Blog from "@/components/BlogsComponent.vue";
 import Comment from "@/components/CommentsComponent.vue";
 export default {
   name: "Profile",
+  props: ["comments"],
   mounted() {
     //this.$store.dispatch("getBlogComments", this.$route.params.id);
     this.$store.dispatch("getProfileComments");
@@ -103,6 +105,7 @@ export default {
   methods: {
     updateProfile() {
       this.$store.dispatch("updateProfile", { ...this.newProfile });
+      this.newProfile = {};
     },
     toggleEdit() {
       this.edit = !this.edit;
@@ -111,6 +114,8 @@ export default {
       this.myBlogs = !this.myBlogs;
     },
     toggleMyComments() {
+      // NOTE may need to enable debugger here to get the button to function again.
+      // debugger
       this.myComments = !this.myComments;
     }
   },

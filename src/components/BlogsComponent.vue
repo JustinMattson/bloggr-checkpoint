@@ -9,7 +9,7 @@
               <i
                 class="far fa-trash-alt text-danger action"
                 v-show="blog.creatorEmail==profile.email"
-                @click="deleteBlog"
+                @click="deleteBlog(blog.id)"
               ></i>
             </span>
           </div>
@@ -26,6 +26,7 @@
             </div>
           </router-link>
         </div>
+        <!-- put v-show form here. -->
       </div>
     </div>
   </div>
@@ -33,10 +34,10 @@
 
 
 <script>
-import Profile from "@/components/ProfileComponent.vue";
+//import Profile from "@/components/ProfileComponent.vue";
 export default {
   name: "Blog",
-  props: ["blog", "profile"],
+  props: ["blog"],
   mounted() {
     this.$store.dispatch("getAllBlogs", this.$route.params.id);
     this.$store.dispatch("getProfile");
@@ -56,13 +57,14 @@ export default {
     isVerified() {
       blog.creatorEmail === profile.email ? author++ : author;
     },
-    deleteBlog() {
-      // TODO add delete functionality
+    deleteBlog(id) {
+      // TODO add refresh functionality
       console.log("delete me");
+      this.$store.dispatch("deleteBlog", id);
     }
   },
   components: {
-    Profile
+    //Profile
   }
 };
 </script>

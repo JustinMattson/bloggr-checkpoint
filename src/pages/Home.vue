@@ -6,7 +6,7 @@
     </h1>
 
     <i class="fas fa-plus action" @click="toggleForm" :style="{color:color}">&nbsp;New Blog</i>
-    <form class="form" v-if="showForm" @submit.prevent="newBlog" style="width:100%;">
+    <form class="form" v-if="showForm" @submit.prevent="addBlog" style="width:100%;">
       <div class="form-group">
         <label for></label>
         <input
@@ -62,8 +62,8 @@ export default {
     toggleForm() {
       this.showForm = !this.showForm;
     },
-    newBlog() {
-      this.$store.dispatch("newBlog", { ...this.newBlog });
+    addBlog() {
+      this.$store.dispatch("addBlog", { ...this.newBlog });
       this.newBlog = {};
     }
   },

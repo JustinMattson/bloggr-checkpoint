@@ -11,6 +11,7 @@ export default new Vuex.Store({
     blogs: [],
     profileComments: [],
     activeBlog: {},
+    goHere: {},
   },
   mutations: {
     setProfile(state, profile) {
@@ -19,16 +20,25 @@ export default new Vuex.Store({
     setBlogs(state, data) {
       state.blogs = data;
     },
-    newBlog(state, data) {
-      state.blogs.push(data);
-    },
+    // newBlog(state, data) {
+    //   state.blogs.push(data);
+    // },
     setActiveBlog(state, blog) {
       state.activeBlog = blog;
+    },
+    addBlogComment(state, comment) {
+      state.activeBlog.comments.push(comment);
+    },
+    setCommentUpdate(state, updatedComment) {
+      state.activeBlog.comment = updatedComment;
     },
     // TODO Learn more about mutations?
     setProfileComments(state, data) {
       state.profileComments = data;
     },
+    // setGoHere(state, goHere) {
+    //   state.goHere = goHere;
+    // },
   },
   actions: {
     setBearer({}, bearer) {
@@ -59,13 +69,14 @@ export default new Vuex.Store({
     //   "name": JM,
     //   "picture": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
     // }
-    // async updateProfile({ commit }) {
-    //   try {
-
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
+    async updateProfile({ commit, dispatch }, newProfileInfo) {
+      try {
+        let res = await api.put("profile", newProfileInfo);
+        commit("setProfile", newProfileInfo);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async getAllBlogs({ commit }) {
       try {
         let res = await api.get("blogs");
@@ -83,14 +94,50 @@ export default new Vuex.Store({
       }
     },
     // TODO this is not fuctional
-    async newBlog({ commit, dispatch }, blog) {
-      let res = await api.post("blogs", blog);
-      dispatch("getAllBlogs");
+    async addBlog({ commit, dispatch }, blog) {
+      try {
+        let res = await api.post("blogs", blog);
+        dispatch("getAllBlogs");
+      } catch (error) {
+        console.error(error);
+      }
     },
     // TODO this also is not functional
-    async newComment({ commit, dispatch }, comment) {
-      let res = await api.post("comments", comment);
-      dispatch("getBlogComments");
+    async addComment({ commit, dispatch }, comment) {
+      try {
+        let res = await api.post("comments", comment);
+        commit("addBlogComment", comment);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async updateComment({ commit, dispatch }, id, updatedComment) {
+      try {
+        let res = await api.put("comments/" + id, updatedComment);
+        commit("setCommentUpdate", updatedComment);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    // TODO shouldn't this work?
+    goTo(goHere) {
+      console.log(goHere);
+      this.commit("setGoHere", goHere);
+      // router.push(goHere);
+    },
+    async deleteBlog({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("blogs/" + id);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async deleteComment({ commit, dispatch }, id) {
+      try {
+        let res = await api.delete("comments/" + id);
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 });
