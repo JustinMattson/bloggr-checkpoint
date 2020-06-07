@@ -24,6 +24,10 @@ export default new Vuex.Store({
     setActiveBlog(state, blog) {
       state.activeBlog = blog;
     },
+    // TODO Learn more about mutations?
+    // setUserComments(state, data) {
+    //   state.userComments = data
+    // }
   },
   actions: {
     setBearer({}, bearer) {
@@ -40,6 +44,26 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    //TODO  not yet working
+    // async getProfileComments({ commit }) {
+    //   try {
+    //     let res = await api.get("profile/comments");
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // },
+    // TODO Postman isn't updating my profile
+    // {
+    //   "name": JM,
+    //   "picture": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
+    // }
+    // async updateProfile({ commit }) {
+    //   try {
+
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // },
     async getAllBlogs({ commit }) {
       try {
         let res = await api.get("blogs");
@@ -56,10 +80,12 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
+    // TODO this is not fuctional
     async newBlog({ commit, dispatch }, blog) {
       let res = await api.post("blogs", blog);
       dispatch("getAllBlogs");
     },
+    // TODO this also is not functional
     async newComment({ commit, dispatch }, comment) {
       let res = await api.post("comments", comment);
       dispatch("getBlogComments");
