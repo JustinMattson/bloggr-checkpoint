@@ -62,8 +62,8 @@ Once you have the appropriate functionality, add a theme the site in whatever wa
 - [+] Once logged in Users can Create & Delete Comments
 - [+] Users can only modify/delete data they created
 - [+] Users can modify their username and profile image
-- [ ] Once logged in Users can Create Edit Comments
-- [ ] Once logged in Users can Create Edit Blogs
+- [ ] Once logged in Users can Edit Comments
+- [ ] Once logged in Users can Edit Blogs
 
 ### API Routes
 

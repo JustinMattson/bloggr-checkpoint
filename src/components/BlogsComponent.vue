@@ -63,10 +63,10 @@
 
 
 <script>
-import Profile from "@/components/ProfileComponent.vue";
+//import Profile from "@/components/ProfileComponent.vue";
 export default {
   name: "Blog",
-  props: ["blog", "profile"],
+  props: ["blog"],
   mounted() {
     this.$store.dispatch("getAllBlogs", this.$route.params.id);
     //this.$store.dispatch("getProfile");
@@ -106,7 +106,7 @@ export default {
     }
   },
   components: {
-    Profile
+    //Profile
   }
 };
 </script>

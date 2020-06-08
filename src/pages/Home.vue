@@ -2,11 +2,11 @@
   <div class="home container">
     <h1>
       Welcome
-      <span v-if="$auth.isAuthenticated" :style="{color:color}">{{profile.name}}</span>
+      <span v-if="$auth.isAuthenticated" :style="{color:color}">{{myProfile.name}}</span>
     </h1>
 
     <!-- If not logged in, new blogs do not post. So Dont show the + Add Blog option. -->
-    <div v-show="profile.name">
+    <div v-show="myProfile.name">
       <i class="fas fa-plus action" @click="toggleForm" :style="{color:color}">&nbsp;New Blog</i>
       <form class="form" v-if="showForm" @submit.prevent="addBlog" style="width:100%;">
         <div class="form-group">
@@ -29,7 +29,7 @@
             style="height:15em;"
           />
 
-          <input class="m-2" type="checkbox" name="published" v-model="newBlog.checked" />
+          <input class="m-2" type="checkbox" name="published" v-model="newBlog.published" />
           <span class="mr-4">Published</span>
           <button type="submit" class="btn btn-outline-info my-2">Submit</button>
         </div>
@@ -62,7 +62,7 @@ export default {
     blogs() {
       return this.$store.state.blogs;
     },
-    profile() {
+    myProfile() {
       return this.$store.state.profile;
     }
   },

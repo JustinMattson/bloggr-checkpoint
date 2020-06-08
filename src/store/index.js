@@ -64,11 +64,6 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    // TODO Postman isn't updating my profile
-    // {
-    //   "name": JM,
-    //   "picture": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"
-    // }
     async updateProfile({ commit, dispatch }, newProfileInfo) {
       try {
         let res = await api.put("profile", newProfileInfo);
@@ -113,15 +108,22 @@ export default new Vuex.Store({
     },
     async updateComment({ commit, dispatch }, updatedComment) {
       try {
-        debugger;
-        console.log(updatedComment);
-        let id = updatedComment.commentId;
-        let updatedBody = updatedComment.body;
-        let res = await api.put("comments/" + id, updatedBody);
+        //console.log(updatedComment);
+        // let id = updatedComment.commentId;
+        // let updatedBody = updatedComment.body;
+        let res = await api.put(
+          "comments/" + updatedComment.id,
+          updatedComment
+        );
         //commit("setCommentUpdate", updatedComment);
+        dispatch("getBlogComments", updatedComment.blogId);
       } catch (error) {
         console.error(error);
       }
+      //  example from another project...
+      //  async bid({ commit }, item) {
+      //  await api.put("items/" + item.id + "/bid", { bid: item.value });
+      // }
     },
     async deleteBlog({ commit, dispatch }, id) {
       try {

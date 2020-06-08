@@ -35,40 +35,37 @@
                   class="mr-3"
                   type="text"
                   name="body"
-                  v-model="newComment.body"
+                  v-model="comment.body"
                   placeholder="Update Comment...  does not work at this time."
                   style="width:50%;"
                   required
                 />
                 <br />
-                <input
+                <!-- <input
                   class="m-2"
                   type="text"
                   name="blogId"
                   v-model="newComment.blogId"
                   placeholder="blogId"
-                />
-                {{comment.blogId}}
+                />-->
+                <!-- {{comment.blogId}}
                 <input
                   class="m-2"
                   type="text"
                   name="commentId"
                   v-model="newComment.commentId"
                   placeholder="commentId"
-                />
-                {{comment.id}}
-                <input
+                />-->
+                <!-- {{comment.id}} -->
+                <!-- <input
                   class="m-2"
                   type="text"
                   name="creatorEmail"
                   v-model="newComment.creatorEmail"
                   placeholder="creatorEmail"
-                />
-                {{comment.creatorEmail}}
-                <button
-                  type="Submit"
-                  class="btn btn-outline-secondary shadow ml-1)"
-                >Submit</button>
+                />-->
+                <!-- {{comment.creatorEmail}} -->
+                <button type="Submit" class="btn btn-outline-secondary shadow ml-1)">Submit</button>
               </form>
             </div>
           </div>
@@ -84,19 +81,20 @@ import Profile from "@/components/ProfileComponent.vue";
 import Blogs from "@/components/BlogsComponent.vue";
 export default {
   name: "Comment",
-  props: ["comment", "blog", "profile", "activeBlog"],
+  props: ["comment"],
+  //, "blog", "profile", "activeBlog"
   mounted() {
     this.$store.dispatch("getProfile");
     this.$store.dispatch("getActiveBlog", this.$route.params.id);
   },
   data() {
     return {
-      editComment: false,
-      newComment: {
-        body: "",
-        blogId: "",
-        commentId: ""
-      }
+      editComment: false
+      // newComment: {
+      //   body: "",
+      //   blogId: "",
+      //   commentId: ""
+      // }
     };
   },
   computed: {
@@ -108,7 +106,7 @@ export default {
   methods: {
     toggleEdit() {
       this.editComment = !this.editComment;
-      this.activeComment = comment.id;
+      //this.activeComment = comment.id;
     },
     deleteBlog() {
       // TODO add delete functionality
@@ -121,10 +119,10 @@ export default {
     //     params: this.comment.blogId
     //   });
     // },
-    updateComment(newComment) {
-      debugger;
-      console.log(newComment);
-      this.$store.dispatch("updateComment", newComment);
+    updateComment() {
+      // console.log(newComment);
+      this.$store.dispatch("updateComment", this.comment);
+      this.editComment = false;
     },
     deleteComment(id, blogId) {
       // TODO add refresh functionality
