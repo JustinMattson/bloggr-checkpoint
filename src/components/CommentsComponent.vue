@@ -7,7 +7,7 @@
             class="d-flex justify-content-between px-2"
             v-show="comment.creatorEmail==profile.email"
           >
-            <span class="action" v-show="comment.creatorEmail==profile.email" @click="goToBlog">
+            <span class="action" v-show="comment.creatorEmail==profile.email">
               <router-link :to="{ name: 'Blog', params: { id: comment.blogId}}">{{comment.blogId}}</router-link>
             </span>
             <span v-show="comment.creatorEmail==profile.email">
@@ -28,22 +28,31 @@
           </div>
         </div>
         <!-- Update Comments Form -->
-        <div v-show="editComment++">testing</div>
-        <!-- <div class="row">
+        <div v-show="editComment">edit comment = {{editComment}}</div>
+        <div class="row">
           <div class="col-11 offset-1">
             <form v-show="editComment" style="width:100%;" @submit.prevent="updateComment">
               <input
                 class="mr-3"
                 type="text"
                 name="body"
-                v-model="updateComment.body"
+                v-model="newComment.body"
                 placeholder="Update Comment..."
                 required
               />
+              {{comment.id}}
+              <!-- <input
+                type="text"
+                name="comment.id"
+                v-model="newComment.id"
+                placeholder="comment.id"
+                value="{{comment.id}}"
+                readonly
+              />-->
               <button type="Submit" class="btn btn-outline-danger shadow ml-1)">Submit</button>
             </form>
           </div>
-        </div>-->
+        </div>
       </div>
     </div>
   </div>
@@ -55,17 +64,16 @@ import Profile from "@/components/ProfileComponent.vue";
 import Blogs from "@/components/BlogsComponent.vue";
 export default {
   name: "Comment",
-  props: ["comment", "blog"],
+  props: ["comment", "blog", "profile", "activeBlog"],
   mounted() {
     this.$store.dispatch("getProfile");
-    this.$store.dispatch("getActiveBlog");
+    this.$store.dispatch("getActiveBlog", this.$route.params.id);
   },
   data() {
     return {
-      editComment: 0,
-      commentUpdate: {
-        body: "",
-        commentId: ""
+      editComment: false,
+      newComment: {
+        body: ""
       }
     };
   },
@@ -76,12 +84,9 @@ export default {
     }
   },
   methods: {
-    isVerified() {
-      blog.creatorEmail === profile.email ? author++ : author;
-    },
     toggleEdit() {
-      console.log(editComment);
       this.editComment = !this.editComment;
+      this.activeComment = comment.id;
     },
     deleteBlog() {
       // TODO add delete functionality
@@ -94,20 +99,21 @@ export default {
     //     params: this.comment.blogId
     //   });
     // },
-    updateComment(id, commentUpdate) {
-      console.log(id, commentUpdate);
-      this.$store.dispatch("updateComment", { id, commentUpdate });
-    },
-    deleteComment(id) {
-      // TODO add refresh functionality
+    updateComment(id, newComment) {
       debugger;
-      console.log("delete me");
+      console.log(id, newComment);
+      this.$store.dispatch("updateComment", (id, newComment));
+    },
+    deleteComment(id, blogId) {
+      // TODO add refresh functionality
       this.$store.dispatch("deleteComment", id);
-      this.$store.dispatch("getActiveBlog");
+      this.$store.dispatch("getBlogComments", blogId);
+      this.$store.dispatch("getActiveBlog", this.$route.params.id);
     }
   },
   components: {
-    Blogs
+    Blogs,
+    Profile
   }
 };
 </script>

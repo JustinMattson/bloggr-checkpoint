@@ -76,6 +76,7 @@ export default {
   props: ["comments"],
   mounted() {
     //this.$store.dispatch("getBlogComments", this.$route.params.id);
+    this.$store.dispatch("getAllBlogs");
     this.$store.dispatch("getProfileComments");
   },
   data() {

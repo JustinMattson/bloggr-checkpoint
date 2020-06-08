@@ -34,13 +34,13 @@
 
 
 <script>
-//import Profile from "@/components/ProfileComponent.vue";
+import Profile from "@/components/ProfileComponent.vue";
 export default {
   name: "Blog",
-  props: ["blog"],
+  props: ["blog", "profile"],
   mounted() {
     this.$store.dispatch("getAllBlogs", this.$route.params.id);
-    this.$store.dispatch("getProfile");
+    //this.$store.dispatch("getProfile");
   },
   data() {
     return {
@@ -54,17 +54,16 @@ export default {
     }
   },
   methods: {
-    isVerified() {
-      blog.creatorEmail === profile.email ? author++ : author;
-    },
+    // isVerified() {
+    //   blog.creatorEmail === profile.email ? author++ : author;
+    // },
     deleteBlog(id) {
-      // TODO add refresh functionality
-      console.log("delete me");
+      // REVIEW refreshes from Home vue
       this.$store.dispatch("deleteBlog", id);
     }
   },
   components: {
-    //Profile
+    Profile
   }
 };
 </script>

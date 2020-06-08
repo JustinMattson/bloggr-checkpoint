@@ -113,6 +113,7 @@ export default new Vuex.Store({
     },
     async updateComment({ commit, dispatch }, id, updatedComment) {
       try {
+        debugger;
         let res = await api.put("comments/" + id, updatedComment);
         commit("setCommentUpdate", updatedComment);
       } catch (error) {
@@ -120,21 +121,38 @@ export default new Vuex.Store({
       }
     },
     // TODO shouldn't this work?
-    goTo(goHere) {
-      console.log(goHere);
-      this.commit("setGoHere", goHere);
-      // router.push(goHere);
-    },
+    // goTo(goHere) {
+    //   console.log(goHere);
+    //   this.commit("setGoHere", goHere);
+    //   // router.push(goHere);
+    // },
     async deleteBlog({ commit, dispatch }, id) {
       try {
-        let res = await api.delete("blogs/" + id);
+        let response = confirm(
+          "Delete may orphan comments. Click 'Ok' to confirm you wish to delete Blog"
+        );
+        if (response) {
+          let res = await api.delete("blogs/" + id);
+          dispatch("getAllBlogs");
+        } else {
+          alert("Delete cancelled");
+        }
       } catch (error) {
         console.error(error);
       }
     },
-    async deleteComment({ commit, dispatch }, id) {
+    async deleteComment({ commit, dispatch }, id, blogId) {
       try {
-        let res = await api.delete("comments/" + id);
+        let response = confirm(
+          "Click 'Ok' to confirm you wish to delete comment"
+        );
+        if (response) {
+          let res = await api.delete("comments/" + id);
+          dispatch("getProfileComments");
+          commit("setActiveBlog");
+        } else {
+          alert("Delete cancelled");
+        }
       } catch (error) {
         console.error(error);
       }
