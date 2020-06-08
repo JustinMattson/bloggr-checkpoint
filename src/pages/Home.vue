@@ -26,7 +26,10 @@
           placeholder="Blog..."
           style="height:15em;"
         />
-        <button type="submit" class="btn btn-outline-primary my-2">Submit</button>
+
+        <input class="m-2" type="checkbox" name="published" v-model="newBlog.checked" />
+        <span class="mr-4">Published</span>
+        <button type="submit" class="btn btn-outline-info my-2">Submit</button>
       </div>
     </form>
     <!--  -->

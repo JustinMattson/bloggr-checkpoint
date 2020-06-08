@@ -27,19 +27,19 @@ You may wish to refresh your self on a few things available to you from the bcw 
 
 You will need to fulfill the following user stories:
 
-- "As a user, I can see all the blogs on the `home page`, so that I do not have to log in to see all the blogs"
-- "As a user, I can click on a blog to be taken to the `blog page`, so that I can read the contents of the blog and its comments"
+- [+]"As a user, I can see all the blogs on the `home page`, so that I do not have to log in to see all the blogs"
+- [+]"As a user, I can click on a blog to be taken to the `blog page`, so that I can read the contents of the blog and its comments"
 
-* "As a user, I can login to see my `profile page`, so that I can see all of my blogs"
-* "As a user, I can create, edit and delete blogs, so that I can easily create content to share with others"
-* "As a user, I can create, edit and delete comments on the `blog page`, so that I can provide feedback to other writers on their blog"
+* [+]"As a user, I can login to see my `profile page`, so that I can see all of my blogs"
+* [ ]"As a user, I can create, edit and delete blogs, so that I can easily create content to share with others"
+* [ ]"As a user, I can create, edit and delete comments on the `blog page`, so that I can provide feedback to other writers on their blog"
 
 These user stories can be implemented as a stretch goals
 
-- "As a user, I can save a blog as a draft, so that I can save it without having it published right away"
-- "As a user, I need to be able to search all blogs by a certain author, so that I can filter down the blogs to only what they have created"
-- "As a user, my profile can also show a list of all my comments, with a link to the blog that I had commented on"
-- "As a user, I can tag blogs, so that I can search for them via query parameters and filter down blogs"
+- [ ]"As a user, I can save a blog as a draft, so that I can save it without having it published right away"
+- [ ]"As a user, I need to be able to search all blogs by a certain author, so that I can filter down the blogs to only what they have created"
+- [+] "As a user, my profile can also show a list of all my comments, with a link to the blog that I had commented on"
+- [ ]"As a user, I can tag blogs, so that I can search for them via query parameters and filter down blogs"
 
 ### Step 3
 
@@ -58,9 +58,12 @@ Once you have the appropriate functionality, add a theme the site in whatever wa
 #### Functionality
 
 - [+] Users Can Register, Login, and Logout (this should work out of the box, don't break it)
-- [ ] Once logged in Users can Create Edit and Delete Blogs
-- [ ] Once logged in Users can Create Edit and Delete Comments
-- [ ] Users can only modify/delete data they created
+- [+] Once logged in Users can Create & Delete Blogs
+- [+] Once logged in Users can Create & Delete Comments
+- [+] Users can only modify/delete data they created
+- [+] Users can modify their username and profile image
+- [ ] Once logged in Users can Create Edit Comments
+- [ ] Once logged in Users can Create Edit Blogs
 
 ### API Routes
 
@@ -77,10 +80,10 @@ Schema:
 
 /profile
 
-- GET: '/' returns users profile, creates one if it does not exist\*
-- GET: '/blogs' returns logged in users Blogs\*2
-- GET: '/comments' returns logged in users Comments\*2
-- PUT: '/' Allows user to edit their own profile\*2
+- [*] GET: '/' returns users profile, creates one if it does not exist\*
+- [+] GET: '/blogs' returns logged in users Blogs\*2
+- [+] GET: '/comments' returns logged in users Comments\*2
+- [+] PUT: '/' Allows user to edit their own profile\*2
 
 #### Blog _"api/blogs"_
 
@@ -95,11 +98,11 @@ Schema:
 
 /blogs
 
-- GET: '/' Returns all pubished blogs \*3
-- GET: '/:id' Returns blog by Id and its comments
-- POST: '/' Create new Blog \*
-- PUT: '/:id' Edits Blog \*2
-- DELETE: '/:id' Deletes Blog \*2
+- [+] GET: '/' Returns all pubished blogs \*3
+- [+] GET: '/:id' Returns blog by Id and its comments
+- [+] POST: '/' Create new Blog \*
+- [ ] PUT: '/:id' Edits Blog \*2
+- [+] DELETE: '/:id' Deletes Blog \*2
 
 #### Comments _"api/comments"_
 
@@ -111,9 +114,9 @@ Schema:
 
 /comments
 
-- POST: '/' Create new Comment \*
-- PUT: '/:id' Edits Comment \*2
-- DELETE: '/:id' Deletes Comment \*2
+- [+] POST: '/' Create new Comment \*
+- [ ] PUT: '/:id' Edits Comment \*2
+- [+] DELETE: '/:id' Deletes Comment \*2
 
 > \* _requires user login_ \
 > \*2 _requires login and ownership of data_ \

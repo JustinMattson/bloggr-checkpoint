@@ -1,7 +1,7 @@
 <template>
   <div class="Blogs container">
     <!-- NOTE this is for an individual Blog. -->
-    <div class="card mt-3 mb-2 bg-info shadow">
+    <div class="card mt-3 mb-2 border-info shadow">
       <div class="d-flex justify-content-between px-2">
         <span v-show="blog.creatorEmail==profile.email">{{blog.id}}</span>
         <span>
@@ -45,7 +45,7 @@
           v-model="newComment.body"
           id
           class="form-control m-1 border-dark shadow"
-          placeholder="Add Comment..."
+          placeholder="Add Comment...   requires a page refresh to display the new data."
           required
         />&nbsp;
         <button type="submit" class="btn btn-outline-primary shadow ml-1">Submit</button>

@@ -31,8 +31,10 @@
           id
           class="form-control m-1 shadow border-warning"
           placeholder="ImgUrl..."
+          required
         />
         <button type="submit" class="btn btn-warning my-2 shadow">Submit</button>
+        <p class="text-warning">* Please refresh page after clicking submit.</p>
       </div>
     </form>
 

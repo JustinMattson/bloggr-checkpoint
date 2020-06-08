@@ -26,31 +26,32 @@
               <div class="text-muted" style="font-size:10pt;">id: {{comment.id}}</div>
             </div>
           </div>
-        </div>
-        <!-- Update Comments Form -->
-        <div v-show="editComment">edit comment = {{editComment}}</div>
-        <div class="row">
-          <div class="col-11 offset-1">
-            <form v-show="editComment" style="width:100%;" @submit.prevent="updateComment">
-              <input
-                class="mr-3"
-                type="text"
-                name="body"
-                v-model="newComment.body"
-                placeholder="Update Comment..."
-                required
-              />
-              {{comment.id}}
-              <!-- <input
+          <!-- Update Comments Form -->
+          <!-- <div v-show="editComment">edit comment = {{editComment}}</div> -->
+          <div class="row">
+            <div class="col-11 offset-1">
+              <form v-show="editComment" style="width:100%;" @submit.prevent="updateComment">
+                <input
+                  class="mr-3"
+                  type="text"
+                  name="body"
+                  v-model="newComment.body"
+                  placeholder="Update Comment...  does not work at this time."
+                  style="width:50%;"
+                  required
+                />
+                {{comment.id}}
+                <!-- <input
                 type="text"
                 name="comment.id"
                 v-model="newComment.id"
                 placeholder="comment.id"
                 value="{{comment.id}}"
                 readonly
-              />-->
-              <button type="Submit" class="btn btn-outline-danger shadow ml-1)">Submit</button>
-            </form>
+                />-->
+                <button type="Submit" class="btn btn-outline-secondary shadow ml-1)">Submit</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
