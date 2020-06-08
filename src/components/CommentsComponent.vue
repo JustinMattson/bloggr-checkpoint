@@ -40,16 +40,35 @@
                   style="width:50%;"
                   required
                 />
+                <br />
+                <input
+                  class="m-2"
+                  type="text"
+                  name="blogId"
+                  v-model="newComment.blogId"
+                  placeholder="blogId"
+                />
+                {{comment.blogId}}
+                <input
+                  class="m-2"
+                  type="text"
+                  name="commentId"
+                  v-model="newComment.commentId"
+                  placeholder="commentId"
+                />
                 {{comment.id}}
-                <!-- <input
-                type="text"
-                name="comment.id"
-                v-model="newComment.id"
-                placeholder="comment.id"
-                value="{{comment.id}}"
-                readonly
-                />-->
-                <button type="Submit" class="btn btn-outline-secondary shadow ml-1)">Submit</button>
+                <input
+                  class="m-2"
+                  type="text"
+                  name="creatorEmail"
+                  v-model="newComment.creatorEmail"
+                  placeholder="creatorEmail"
+                />
+                {{comment.creatorEmail}}
+                <button
+                  type="Submit"
+                  class="btn btn-outline-secondary shadow ml-1)"
+                >Submit</button>
               </form>
             </div>
           </div>
@@ -74,7 +93,9 @@ export default {
     return {
       editComment: false,
       newComment: {
-        body: ""
+        body: "",
+        blogId: "",
+        commentId: ""
       }
     };
   },
@@ -100,10 +121,10 @@ export default {
     //     params: this.comment.blogId
     //   });
     // },
-    updateComment(id, newComment) {
+    updateComment(newComment) {
       debugger;
-      console.log(id, newComment);
-      this.$store.dispatch("updateComment", (id, newComment));
+      console.log(newComment);
+      this.$store.dispatch("updateComment", newComment);
     },
     deleteComment(id, blogId) {
       // TODO add refresh functionality

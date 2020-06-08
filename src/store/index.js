@@ -111,21 +111,18 @@ export default new Vuex.Store({
         console.error(error);
       }
     },
-    async updateComment({ commit, dispatch }, id, updatedComment) {
+    async updateComment({ commit, dispatch }, updatedComment) {
       try {
         debugger;
-        let res = await api.put("comments/" + id, updatedComment);
-        commit("setCommentUpdate", updatedComment);
+        console.log(updatedComment);
+        let id = updatedComment.commentId;
+        let updatedBody = updatedComment.body;
+        let res = await api.put("comments/" + id, updatedBody);
+        //commit("setCommentUpdate", updatedComment);
       } catch (error) {
         console.error(error);
       }
     },
-    // TODO shouldn't this work?
-    // goTo(goHere) {
-    //   console.log(goHere);
-    //   this.commit("setGoHere", goHere);
-    //   // router.push(goHere);
-    // },
     async deleteBlog({ commit, dispatch }, id) {
       try {
         let response = confirm(
