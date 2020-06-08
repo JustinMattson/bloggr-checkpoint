@@ -5,33 +5,36 @@
       <span v-if="$auth.isAuthenticated" :style="{color:color}">{{profile.name}}</span>
     </h1>
 
-    <i class="fas fa-plus action" @click="toggleForm" :style="{color:color}">&nbsp;New Blog</i>
-    <form class="form" v-if="showForm" @submit.prevent="addBlog" style="width:100%;">
-      <div class="form-group">
-        <label for></label>
-        <input
-          type="text"
-          name="title"
-          v-model="newBlog.title"
-          id
-          class="form-control"
-          placeholder="Title..."
-        />
-        <input
-          type="text"
-          name="body"
-          v-model="newBlog.body"
-          id
-          class="form-control"
-          placeholder="Blog..."
-          style="height:15em;"
-        />
+    <!-- If not logged in, new blogs do not post. So Dont show the + Add Blog option. -->
+    <div v-show="profile.name">
+      <i class="fas fa-plus action" @click="toggleForm" :style="{color:color}">&nbsp;New Blog</i>
+      <form class="form" v-if="showForm" @submit.prevent="addBlog" style="width:100%;">
+        <div class="form-group">
+          <label for></label>
+          <input
+            type="text"
+            name="title"
+            v-model="newBlog.title"
+            id
+            class="form-control"
+            placeholder="Title..."
+          />
+          <input
+            type="text"
+            name="body"
+            v-model="newBlog.body"
+            id
+            class="form-control"
+            placeholder="Blog..."
+            style="height:15em;"
+          />
 
-        <input class="m-2" type="checkbox" name="published" v-model="newBlog.checked" />
-        <span class="mr-4">Published</span>
-        <button type="submit" class="btn btn-outline-info my-2">Submit</button>
-      </div>
-    </form>
+          <input class="m-2" type="checkbox" name="published" v-model="newBlog.checked" />
+          <span class="mr-4">Published</span>
+          <button type="submit" class="btn btn-outline-info my-2">Submit</button>
+        </div>
+      </form>
+    </div>
     <!--  -->
     <blog v-for="blog in blogs" :key="blog.id" :blog="blog" />
   </div>
@@ -47,7 +50,9 @@ export default {
   },
   data() {
     return {
-      newBlog: {},
+      newBlog: {
+        published: false
+      },
       showForm: false,
       color: "#808",
       fontSize: "10px"

@@ -20,7 +20,11 @@
                   <span class="text-muted">&nbsp;~{{blog.creator.name}}</span>
                 </div>
                 <div class="text-muted">updated: {{blog.updatedAt}}"</div>
-                <div class="text-muted" :style="{fontSize:fontSize}">id: {{blog.id}}"</div>
+                <span
+                  class="text-muted"
+                  :style="{fontSize:fontSize}"
+                >Published: {{blog.published}} "</span>
+                <span class="text-muted" :style="{fontSize:fontSize}">id: {{blog.id}}"</span>
               </div>
             </div>
           </router-link>

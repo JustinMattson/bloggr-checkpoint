@@ -19,7 +19,8 @@
             <span class="text-muted">&nbsp;~{{blog.creator.name}}</span>
           </p>
           <p class="card-text">{{blog.body}}</p>
-          <span class="text-muted">id: {{blog._id}}</span>
+          <span class="text-muted" :style="{fontSize:fontSize}">Published: {{blog.published}} "</span>
+          <span class="text-muted" :style="{fontSize:fontSize}">id: {{blog.id}}"</span>
         </div>
       </div>
     </div>
