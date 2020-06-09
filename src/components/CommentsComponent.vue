@@ -22,7 +22,8 @@
             <div class="card-body">
               <p class="card-text">{{comment.body}}</p>
               <div class="text-muted" font-weight-bold>&nbsp;~{{comment.creator.name}}</div>
-              <div class="text-muted" style="font-size:10pt;">Posted: {{comment.updatedAt}}</div>
+              <!-- <div class="text-muted" style="font-size:10pt;">Posted: {{comment.updatedAt}}</div> -->
+              <div class="text-muted" style="font-size:10pt;">Posted: {{prettyDate}}</div>
               <div class="text-muted" style="font-size:10pt;">id: {{comment.id}}</div>
             </div>
           </div>
@@ -89,7 +90,14 @@ export default {
   },
   data() {
     return {
-      editComment: false
+      editComment: false,
+      prettyDate: new Date(this.comment.createdAt).toLocaleDateString("eu-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      })
       // newComment: {
       //   body: "",
       //   blogId: "",

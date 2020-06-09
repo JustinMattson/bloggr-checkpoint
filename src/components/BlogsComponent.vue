@@ -19,7 +19,8 @@
                   <span class="card-title font-weight-bold">{{blog.title}}</span>
                   <span class="text-muted">&nbsp;~{{blog.creator.name}}</span>
                 </div>
-                <div class="text-muted">updated: {{blog.updatedAt}}"</div>
+                <!-- <div class="text-muted">updated: {{blog.updatedAt}}</div> -->
+                <div class="text-muted">updated: {{prettyDate}}</div>
                 <span
                   class="text-muted"
                   :style="{fontSize:fontSize}"
@@ -41,8 +42,7 @@
                 class="form-control"
                 placeholder="Title..."
               />
-              <input
-                type="text"
+              <textarea
                 name="body"
                 v-model="blog.body"
                 id
@@ -76,7 +76,18 @@ export default {
       color: "#808",
       fontSize: "10px",
       editBlog: false,
-      selectedBlog: ""
+      selectedBlog: "",
+      prettyDate: new Date(this.blog.createdAt).toLocaleDateString("eu-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+      })
+      // prettyTime: new Date(this.blog.createdAt).toLocalTimeString("eu-US", {
+      //   hour: "2-digit",
+      //   minute: "2-digit"
+      // })
       // blogUpdate: {
       //   body: "",
       //   blogId: "",

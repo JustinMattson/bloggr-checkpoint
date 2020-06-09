@@ -19,8 +19,7 @@
             class="form-control"
             placeholder="Title..."
           />
-          <input
-            type="text"
+          <textarea
             name="body"
             v-model="newBlog.body"
             id
