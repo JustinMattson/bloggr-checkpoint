@@ -1,71 +1,73 @@
 <template>
-  <div class="about text-center container">
-    <h1>
-      Welcome
-      <span :style="{color:color}">{{ profile.name }}</span>
-    </h1>
-    <img class="rounded-circle shadow" :src="profile.picture" @click="toggleEdit" />
-    <p>
-      {{ profile.email }}
-      <br />
-      <span class="text-danger" :style="{fontSize:fontSize}">{{profile.id}}</span>
-    </p>
-    <p class="text-muted">Click on profile image to edit user profile.</p>
+  <div class="about container">
+    <div class="text-center">
+      <h1>
+        Welcome
+        <span :style="{color:color}">{{ profile.name }}</span>
+      </h1>
+      <img class="rounded-circle shadow" :src="profile.picture" @click="toggleEdit" />
+      <p>
+        {{ profile.email }}
+        <br />
+        <span class="text-danger" :style="{fontSize:fontSize}">{{profile.id}}</span>
+      </p>
+      <p class="text-muted">Click on profile image to edit user profile.</p>
 
-    <form class="form" v-if="edit" style="width:100%;" @submit.prevent="updateProfile">
-      <div class="form-group">
-        <label for></label>
-        <input
-          type="text"
-          name="name"
-          v-model="newProfile.name"
-          id
-          class="form-control m-1 shadow border-warning"
-          placeholder="Name..."
-          required
-        />
-        <input
-          type="text"
-          name="picture"
-          v-model="newProfile.picture"
-          id
-          class="form-control m-1 shadow border-warning"
-          placeholder="ImgUrl..."
-          required
-        />
-        <button type="submit" class="btn btn-warning my-2 shadow">Submit</button>
-        <p class="text-warning">* Please refresh page after clicking submit.</p>
-      </div>
-    </form>
+      <form class="form" v-if="edit" style="width:100%;" @submit.prevent="updateProfile">
+        <div class="form-group">
+          <label for></label>
+          <input
+            type="text"
+            name="name"
+            v-model="newProfile.name"
+            id
+            class="form-control m-1 shadow border-warning"
+            placeholder="Name..."
+            required
+          />
+          <input
+            type="text"
+            name="picture"
+            v-model="newProfile.picture"
+            id
+            class="form-control m-1 shadow border-warning"
+            placeholder="ImgUrl..."
+            required
+          />
+          <button type="submit" class="btn btn-warning my-2 shadow">Submit</button>
+          <p class="text-warning">* Please refresh page after clicking submit.</p>
+        </div>
+      </form>
 
-    <div class="row d-flex justify-content-between">
-      <div class="col-6">
-        <button type="button" class="btn btn-info shadow" @click="toggleMyBlogs">View My Blogs</button>
+      <div class="row d-flex justify-content-between">
+        <div class="col-6">
+          <button type="button" class="btn btn-info shadow" @click="toggleMyBlogs">View My Blogs</button>
+        </div>
+        <div class="col-6">
+          <button
+            type="button"
+            class="btn btn-secondary shadow"
+            @click="toggleMyComments"
+          >View My Comments</button>
+        </div>
       </div>
-      <div class="col-6">
-        <button
-          type="button"
-          class="btn btn-secondary shadow"
-          @click="toggleMyComments"
-        >View My Comments</button>
-      </div>
-      <!-- REVIEW I utilized the same blog view, but filtered on if it was tied to the user profile. -->
-      <!-- TODO add link to blog -->
-      <blog
-        v-for="blog in blogs"
-        :key="blog.id"
-        :blog="blog"
-        v-show="blog.creatorEmail==profile.email && myBlogs"
-      />
-      <!-- REVIEW this is more difficult than this because there is no activeBlog, have to search all blogs for creatorEmail? It was given in the API description in the readme. -->
-      <!-- TODO add link to blog -->
-      <comment
-        v-for="comment in profileComments"
-        :key="comment.id"
-        :comment="comment"
-        v-show="myComments"
-      />
     </div>
+    <!-- REVIEW I utilized the same blog view, but filtered on if it was tied to the user profile. -->
+    <!-- TODO add link to blog -->
+    <blog
+      v-for="blog in blogs"
+      :key="blog.id"
+      :blog="blog"
+      v-show="blog.creatorEmail==profile.email && myBlogs"
+    />
+    <!-- REVIEW this is more difficult than this because there is no activeBlog, have to search all blogs for creatorEmail? It was given in the API description in the readme. -->
+    <!-- TODO add link to blog -->
+    <comment
+      v-for="comment in profileComments"
+      :key="comment.id"
+      :comment="comment"
+      v-show="myComments"
+    />
   </div>
 </template>
 
@@ -75,7 +77,7 @@ import Blog from "@/components/BlogsComponent.vue";
 import Comment from "@/components/CommentsComponent.vue";
 export default {
   name: "Profile",
-  props: ["comments"],
+  props: ["comments", "blog"],
   mounted() {
     //this.$store.dispatch("getBlogComments", this.$route.params.id);
     this.$store.dispatch("getAllBlogs");

@@ -80,7 +80,6 @@ export default {
     profile() {
       return this.$store.state.profile;
     },
-    // TODO why is this blog and not blogs like the home vue?
     blog() {
       return this.$store.state.activeBlog.blog;
     }
@@ -95,11 +94,11 @@ export default {
     //   next();
     // },
     addComment() {
-      this.$store.dispatch("addComment", { ...this.newComment });
+      this.$store.dispatch("addComment", this.newComment);
       // TODO troubleshoot why this isn't refreshing the screen.
-      this.$store.dispatch("getBlogComments", this.$route.params.id);
-      //this.newComment = { blogId: this.$route.params.id };
-      // TODO troubleshoot why this logs me out.
+      this.$store.dispatch("getActiveBlog", this.$route.params.id);
+      //this.$store.dispatch("getBlogComments", this.$route.params.id);
+      this.newComment = { blogId: this.$route.params.id };
     }
   },
   components: {

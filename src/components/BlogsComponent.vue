@@ -36,7 +36,7 @@
               <input
                 type="text"
                 name="title"
-                v-model="blogUpdate.title"
+                v-model="blog.title"
                 id
                 class="form-control"
                 placeholder="Title..."
@@ -44,13 +44,13 @@
               <input
                 type="text"
                 name="body"
-                v-model="blogUpdate.body"
+                v-model="blog.body"
                 id
                 class="form-control"
                 placeholder="Blog..."
                 style="height:15em;"
               />
-              <input class="m-2" type="checkbox" name="published" v-model="blogUpdate.checked" />
+              <input class="m-2" type="checkbox" name="published" v-model="blog.published" />
               <span class="mr-4">Published</span>
               <button type="submit" class="btn btn-outline-info my-2">Submit</button>
             </div>
@@ -76,12 +76,12 @@ export default {
       color: "#808",
       fontSize: "10px",
       editBlog: false,
-      selectedBlog: "",
-      blogUpdate: {
-        body: "",
-        blogId: "",
-        checked: false
-      }
+      selectedBlog: ""
+      // blogUpdate: {
+      //   body: "",
+      //   blogId: "",
+      //   checked: false
+      // }
     };
   },
   computed: {
@@ -97,8 +97,9 @@ export default {
       this.editBlog = !this.editBlog;
     },
     updateBlog() {
-      let blogId = selectedBlog;
-      this.$store.dispatch("updateBlog", { ...this.blogUpdate });
+      //let blogId = selectedBlog;
+      this.$store.dispatch("updateBlog", this.blog);
+      this.editBlog = false;
     },
     deleteBlog(id) {
       // REVIEW refreshes from Home vue

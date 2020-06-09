@@ -31,8 +31,8 @@ You will need to fulfill the following user stories:
 - [+]"As a user, I can click on a blog to be taken to the `blog page`, so that I can read the contents of the blog and its comments"
 
 * [+]"As a user, I can login to see my `profile page`, so that I can see all of my blogs"
-* [ ]"As a user, I can create, edit and delete blogs, so that I can easily create content to share with others"
-* [ ]"As a user, I can create, edit and delete comments on the `blog page`, so that I can provide feedback to other writers on their blog"
+* [+]"As a user, I can create, edit and delete blogs, so that I can easily create content to share with others"
+* [+]"As a user, I can create, edit and delete comments on the `blog page`, so that I can provide feedback to other writers on their blog"
 
 These user stories can be implemented as a stretch goals
 
@@ -62,8 +62,8 @@ Once you have the appropriate functionality, add a theme the site in whatever wa
 - [+] Once logged in Users can Create & Delete Comments
 - [+] Users can only modify/delete data they created
 - [+] Users can modify their username and profile image
-- [ ] Once logged in Users can Edit Comments
-- [ ] Once logged in Users can Edit Blogs
+- [+] Once logged in Users can Edit Comments
+- [+] Once logged in Users can Edit Blogs
 
 ### API Routes
 
@@ -101,7 +101,7 @@ Schema:
 - [+] GET: '/' Returns all pubished blogs \*3
 - [+] GET: '/:id' Returns blog by Id and its comments
 - [+] POST: '/' Create new Blog \*
-- [ ] PUT: '/:id' Edits Blog \*2
+- [+] PUT: '/:id' Edits Blog \*2
 - [+] DELETE: '/:id' Deletes Blog \*2
 
 #### Comments _"api/comments"_
@@ -115,7 +115,7 @@ Schema:
 /comments
 
 - [+] POST: '/' Create new Comment \*
-- [ ] PUT: '/:id' Edits Comment \*2
+- [+] PUT: '/:id' Edits Comment \*2
 - [+] DELETE: '/:id' Deletes Comment \*2
 
 > \* _requires user login_ \

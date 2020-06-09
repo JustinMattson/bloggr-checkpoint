@@ -28,6 +28,7 @@ export default new Vuex.Store({
     },
     addBlogComment(state, comment) {
       state.activeBlog.comments.push(comment);
+      state.profileComments.push(comment);
     },
     setCommentUpdate(state, updatedComment) {
       state.activeBlog.comment = updatedComment;
@@ -101,7 +102,15 @@ export default new Vuex.Store({
     async addComment({ commit, dispatch }, comment) {
       try {
         let res = await api.post("comments", comment);
-        commit("addBlogComment", comment);
+        // commit("addBlogComment", comment);
+        // commit("setActiveBlog", res.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async updateBlog({ commit, dispatch }, updatedBlog) {
+      try {
+        let res = await api.put("blogs/" + updatedBlog.id, updatedBlog);
       } catch (error) {
         console.error(error);
       }

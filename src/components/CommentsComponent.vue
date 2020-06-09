@@ -36,7 +36,7 @@
                   type="text"
                   name="body"
                   v-model="comment.body"
-                  placeholder="Update Comment...  does not work at this time."
+                  placeholder="Update Comment..."
                   style="width:50%;"
                   required
                 />
