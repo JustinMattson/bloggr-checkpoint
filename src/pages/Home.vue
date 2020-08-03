@@ -44,9 +44,6 @@ import Blog from "@/components/BlogsComponent.vue";
 import Profile from "@/components/ProfileComponent.vue";
 export default {
   name: "home",
-  mounted() {
-    this.$store.dispatch("getAllBlogs");
-  },
   data() {
     return {
       newBlog: {
@@ -56,6 +53,9 @@ export default {
       color: "#808",
       fontSize: "10px"
     };
+  },
+  mounted() {
+    this.$store.dispatch("getAllBlogs");
   },
   computed: {
     blogs() {
