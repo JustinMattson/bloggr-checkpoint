@@ -17,7 +17,7 @@
               <div class="card-body">
                 <div>
                   <span class="card-title font-weight-bold">{{blog.title}}</span>
-                  <span class="text-muted">&nbsp;~{{blog.creator.name}}</span>
+                  <span v-if="blog.creator" class="text-muted">&nbsp;~{{blog.creator.name}}</span>
                 </div>
                 <!-- <div class="text-muted">updated: {{blog.updatedAt}}</div> -->
                 <div class="text-muted">updated: {{prettyDate}}</div>
@@ -67,8 +67,8 @@
 export default {
   name: "Blog",
   props: ["blog"],
-  mounted() {
-    this.$store.dispatch("getAllBlogs", this.$route.params.id);
+  async mounted() {
+    await this.$store.dispatch("getAllBlogs", this.$route.params.id);
     //this.$store.dispatch("getProfile");
   },
   data() {
@@ -82,8 +82,8 @@ export default {
         month: "short",
         day: "numeric",
         hour: "2-digit",
-        minute: "2-digit"
-      })
+        minute: "2-digit",
+      }),
       // prettyTime: new Date(this.blog.createdAt).toLocalTimeString("eu-US", {
       //   hour: "2-digit",
       //   minute: "2-digit"
@@ -98,7 +98,7 @@ export default {
   computed: {
     profile() {
       return this.$store.state.profile;
-    }
+    },
   },
   methods: {
     // isVerified() {
@@ -115,11 +115,11 @@ export default {
     deleteBlog(id) {
       // REVIEW refreshes from Home vue
       this.$store.dispatch("deleteBlog", id);
-    }
+    },
   },
   components: {
     //Profile
-  }
+  },
 };
 </script>
 
